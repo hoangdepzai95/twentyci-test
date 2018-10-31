@@ -1,16 +1,25 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
+
+type ButtonType = 'primary' | 'default' | 'danger';
 
 @Directive({
-    selector: '[app-button]'
+    selector: '[app-button]',
+    host: {
+        '[class.app-btn]': 'true'
+    }
 })
 
 export class AppButtonDirective {
 
     @Input()
-    type = 'default';
+    set type(value: ButtonType) {
+        this.updateClass(value);
+    }
 
-    @HostBinding('class')
-    private get getClass(): string {
-        return `app-button btn-${this.type}`;
+    constructor(private elRef: ElementRef, private renderer: Renderer2) {
+    }
+
+    updateClass(btnType: string) {
+        this.renderer.addClass(this.elRef.nativeElement, `btn-${btnType}`);
     }
 }
