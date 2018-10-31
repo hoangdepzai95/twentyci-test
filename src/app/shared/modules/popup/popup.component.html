@@ -1,0 +1,9 @@
+<div class="popup-container" *ngIf="template" [@fadeInAnimation] [@fadeOut]>
+    <div class="popup-wrapper">
+        <ng-template
+                [ngTemplateOutlet]="template"
+                [ngTemplateOutletContext]="{ close: close }"
+        >
+        </ng-template>
+    </div>
+</div>
