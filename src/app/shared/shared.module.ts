@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { AppInputDirective } from './directives/app-input.directive';
 import { FormItemComponent } from './components/form-item/form-item.component';
 import { AppButtonDirective } from './directives/app-button.directive';
+import { CutLongTextPipe } from './pipes/cut-long-text.pipe';
 
 @NgModule({
     declarations: [
         AppInputDirective,
         AppButtonDirective,
-        FormItemComponent
+        FormItemComponent,
+        CutLongTextPipe
     ],
     imports: [
         CommonModule
@@ -17,7 +19,8 @@ import { AppButtonDirective } from './directives/app-button.directive';
         CommonModule,
         AppInputDirective,
         FormItemComponent,
-        AppButtonDirective
+        AppButtonDirective,
+        CutLongTextPipe
     ]
 })
 

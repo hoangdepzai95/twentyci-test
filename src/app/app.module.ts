@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '../mocks/in-memory-data.service';
 import { PostsModule } from './modules/posts/posts.module';
+import { LayoutModule } from './modules/layout/layout.module';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { PostsModule } from './modules/posts/posts.module';
         HttpClientModule,
         AuthModule,
         PostsModule,
+        LayoutModule,
         RouterModule.forRoot([
             {
                 path: '**',

@@ -18,3 +18,13 @@ body {
     color: $danger-color;
     margin: 0;
 }
+
+a {
+    color: #1890ff;
+    text-decoration: none;
+    outline: 0;
+    cursor: pointer;
+    &:hover {
+        color: #096dd9;
+    }
+}
