@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemDataService } from '../mocks/in-memory-data.service';
+import { PostsModule } from './modules/posts/posts.module';
 
 @NgModule({
     declarations: [
@@ -14,12 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
         BrowserModule,
         HttpClientModule,
         AuthModule,
+        PostsModule,
         RouterModule.forRoot([
             {
                 path: '**',
                 redirectTo: '/'
             }
-        ], { scrollPositionRestoration: 'enabled' })
+        ], { scrollPositionRestoration: 'enabled' }),
+        HttpClientInMemoryWebApiModule.forRoot(InMemDataService, { delay: 250, passThruUnknownUrl: true })
     ],
     providers: [],
     bootstrap: [AppComponent]

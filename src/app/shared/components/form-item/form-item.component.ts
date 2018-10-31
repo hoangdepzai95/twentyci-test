@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
     selector: 'app-form-item',
@@ -10,4 +10,8 @@ import { Component } from '@angular/core';
 })
 
 export class FormItemComponent {
+
+    @HostBinding('class.has-error')
+    @Input()
+    hasError: boolean;
 }

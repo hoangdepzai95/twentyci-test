@@ -1,1 +1,18 @@
-this is login page
+<div class="login-form-wrapper">
+    <div class="login-form">
+        <form [formGroup]="logInForm" (ngSubmit)="submitForm()">
+            <app-form-item [hasError]="logInForm.get('userName').dirty && logInForm.get('userName').errors">
+                <input type="text" app-input formControlName="userName" placeholder="user name">
+                <p class="text-danger">Please enter user name</p>
+            </app-form-item>
+            <app-form-item [hasError]="logInForm.get('password').dirty && logInForm.get('password').errors">
+                <input type="password" app-input formControlName="password" placeholder="password">
+                <p class="text-danger">Please enter password</p>
+                <p class="text-danger wrong-info" *ngIf="wrongInfo">Invalid user name or password</p>
+            </app-form-item>
+            <app-form-item>
+                <button app-button type="primary" class="login-btn">Login</button>
+            </app-form-item>
+        </form>
+    </div>
+</div>
