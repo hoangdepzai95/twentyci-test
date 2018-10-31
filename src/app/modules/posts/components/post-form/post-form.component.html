@@ -1,0 +1,19 @@
+<div class="post-form">
+    <div class="header">
+        {{ mode === 'edit' ? 'Edit post' : 'Create post' }}
+    </div>
+    <form [formGroup]="postForm" (ngSubmit)="submitForm()">
+        <app-form-item [hasError]="postForm.get('title').dirty && postForm.get('title').errors">
+            <input type="text" app-input placeholder="Title" formControlName="title"/>
+            <p class="text-danger">Please enter title, title length from 10 to 255 characters</p>
+        </app-form-item>
+        <app-form-item [hasError]="postForm.get('content').dirty && postForm.get('content').errors">
+            <textarea app-input placeholder="Write something..." formControlName="content"></textarea>
+            <p class="text-danger">Write some thing</p>
+        </app-form-item>
+    </form>
+    <div class="footer">
+        <button app-button type="default" (click)="cancel()">Cancel</button>
+        <button app-button type="primary" (click)="submitForm()">Save</button>
+    </div>
+</div>

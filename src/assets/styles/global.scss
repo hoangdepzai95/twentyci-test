@@ -8,6 +8,10 @@ html, body {
 
 body {
     background-color: #edf2f6;
+
+    &.opened-popup {
+        overflow: hidden;
+    }
 }
 
 * {

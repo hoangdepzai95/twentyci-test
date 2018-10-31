@@ -31,7 +31,7 @@ import { PopupModule } from './shared/modules/popup/popup.module';
                 redirectTo: '/'
             }
         ], { scrollPositionRestoration: 'enabled' }),
-        HttpClientInMemoryWebApiModule.forRoot(InMemDataService, { delay: 250, passThruUnknownUrl: true })
+        HttpClientInMemoryWebApiModule.forRoot(InMemDataService, { delay: 100, passThruUnknownUrl: true })
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

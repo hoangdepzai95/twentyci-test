@@ -1,0 +1,31 @@
+@import "variables";
+.post-form {
+    background-color: #FFF;
+    border-radius: 4px;
+    form {
+        padding: 20px;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .footer {
+        padding: 20px;
+        text-align: right;
+        border-top: 1px solid $primary-border-color;;
+        button:first-child {
+            margin-right: 10px;
+        }
+    }
+
+    .header {
+        margin: 0;
+        padding: 16px 24px;
+        font-size: 20px;
+        font-weight: 600;
+        border-bottom: 1px solid $primary-border-color;
+    }
+}
+
+textarea {
+    min-height: 250px;
+}

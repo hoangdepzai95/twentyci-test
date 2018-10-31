@@ -1,4 +1,7 @@
 <div class="posts">
+    <div class="tools">
+        <button app-button type="primary" (click)="openCreateForm()">Create post</button>
+    </div>
     <table>
         <thead>
             <tr>
@@ -9,10 +12,18 @@
         </thead>
         <tbody>
             <tr *ngFor="let post of posts; trackBy: trackById">
-                <td>{{ post.title | cutLongText:100 }}</td>
+                <td><a [routerLink]="'/post/' + post.id">{{ post.title | cutLongText:100 }}</a></td>
                 <td>{{ post.content | cutLongText:100  }}</td>
-                <td><a>Edit</a> | <a>Delete</a></td>
+                <td>
+                    <a (click)="openEditForm(post)">Edit</a> | <a (click)="deletePost(post.id)">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
+<ng-template #formCreate>
+    <post-form [reloadPosts]="getPosts"></post-form>
+</ng-template>
+<ng-template #formEdit>
+    <post-form [mode]="'edit'" [post]="currentEditPost" [reloadPosts]="getPosts"></post-form>
+</ng-template>

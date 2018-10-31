@@ -29,11 +29,36 @@ export class InMemDataService implements InMemoryDbService {
         if (reqInfo.collectionName === 'posts') {
             return reqInfo.utils.createResponse$(() => {
                 return {
-                    body: this.posts,
+                    body: this.cloneDeep(this.posts),
                     status: STATUS.OK
                 };
             });
         }
+
+        if (reqInfo.collectionName === 'post') {
+            const id = +this.getParams(reqInfo, 'id');
+
+            return reqInfo.utils.createResponse$(() => {
+                return {
+                    body: this.cloneDeep(this.posts.find(post => post.id === id) || {}),
+                    status: STATUS.OK
+                };
+            });
+        }
+    }
+
+    getParams(reqInfo: any, key) {
+        return (reqInfo.req.params.updates.find(param => param.param === key) || {}).value;
+    }
+
+    cloneDeep(data: any): any {
+        return JSON.parse(JSON.stringify(data));
+    }
+
+    maxBy(arr: Array<any>, field: string) {
+        return arr.map(o => o[field]).reduce((a, b) => {
+            return Math.max(a, b);
+        });
     }
 
     post(reqInfo: any) {
@@ -50,6 +75,54 @@ export class InMemDataService implements InMemoryDbService {
 
                 return {
                     status: STATUS.UNAUTHORIZED
+                };
+            });
+        }
+
+        if (reqInfo.collectionName === 'posts') {
+            return reqInfo.utils.createResponse$(() => {
+                const { title, content } = reqInfo.req.body;
+                const id = this.maxBy(this.posts, 'id') + 1;
+
+                this.posts.unshift({
+                    id,
+                    title,
+                    content
+                });
+
+                return {
+                    status: STATUS.OK
+                };
+            });
+        }
+    }
+
+    put(reqInfo: any) {
+        if (reqInfo.collectionName === 'posts') {
+            return reqInfo.utils.createResponse$(() => {
+                const { id, title, content } = reqInfo.req.body;
+
+                this.posts.forEach((post) => {
+                    if (post.id === id) {
+                        post.title = title;
+                        post.content = content;
+                    }
+                });
+
+                return {
+                    status: STATUS.OK
+                };
+            });
+        }
+    }
+
+    delete(reqInfo: any) {
+        if (reqInfo.collectionName === 'posts') {
+            return reqInfo.utils.createResponse$(() => {
+                this.posts = this.posts.filter(post => post.id !== +reqInfo.id);
+
+                return {
+                    status: STATUS.OK
                 };
             });
         }
