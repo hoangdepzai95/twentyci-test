@@ -1,0 +1,28 @@
+.app-input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 11px;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    line-height: 1.5;
+    color: rgba(0,0,0,.65);
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 14px ;
+    &:focus {
+        border-color: #40a9ff;
+        outline: 0;
+        box-shadow: 0 0 0 2px rgba(24,144,255,.2);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .app-input {
+        font-size: 16px // ios mobile device will zoom-in if font-size < 16px;
+    }
+}
+
